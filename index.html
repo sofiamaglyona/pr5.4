@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f0f0f0;
+    padding: 34px;
+}
+
+h2 {
+    color: #333;
+}
+
+input[type=number] {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    box-sizing: border-box;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+}
+
+button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border: none;
+    border-radius: 4px;
+}
+
+p {
+    color: #333;
+}
+</style>
+</head>
+<body>
+
+<h2>Обчислення значень функції</h2>
+
+<p>Введіть початок діапазону для x:</p>
+<input id="start" type="number">
+
+<p>Введіть кінець діапазону для x:</p>
+<input id="end" type="number">
+
+<p>Введіть розмір кроку для x:</p>
+<input id="step" type="number">
+
+<button onclick="calculate()">Обчислити</button>
+
+<p id="output"></p>
+
+<script>
+function calculate() {
+    var start = parseFloat(document.getElementById("start").value);
+    var end = parseFloat(document.getElementById("end").value);
+    var step = parseFloat(document.getElementById("step").value);
+    var output = document.getElementById("output");
+    output.innerHTML = "";
+
+    for (var i = 0; i <= (end - start) / step; i++) {
+        var x = start + i * step;
+        var Z;
+        if (x < 2) {
+            Z = Math.sin(x) + Math.cos(x);
+        } else if (x == 2) {
+            Z = Math.pow(x, 4.1);
+        } else {  // x > 2
+            Z = Math.log(x) + Math.sqrt(x);
+        }
+        output.innerHTML += "Для x = " + x.toFixed(2) + ", Z = " + Z.toFixed(2) + "<br>";
+    }
+}
+</script>
+
+</body>
+</html>
